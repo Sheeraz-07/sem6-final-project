@@ -139,12 +139,16 @@ void setup() {
   Serial.print("WiFi connecting");
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(".");
+    Serial.print("waiting to connect to wifi .......");
   }
   Serial.println("");
   Serial.println("WiFi connected");
 
   startCameraServer();
+  // Turn on flashlight (GPIO 4) after camera starts
+  pinMode(4, OUTPUT);
+  digitalWrite(4, HIGH); // Turn ON flashlight
+
 
   Serial.print("Camera Ready! Use 'http://");
   Serial.print(WiFi.localIP());
